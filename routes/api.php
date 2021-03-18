@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/form', [FormController::class, 'index']);
+    Route::post('/create', [FormController::class, 'create']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 

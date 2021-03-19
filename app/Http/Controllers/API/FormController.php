@@ -30,4 +30,19 @@ class FormController extends Controller
             200
         );
     }
+
+    public function update(Request $request, $id)
+    {
+        $data = $request->all();
+        $student = Student::find($id);
+        $student->update($data);
+
+        return response()->json(
+            [
+                'massage' => "Data Student Berhasil di ubah",
+                'data_student' => $student
+            ],
+            200
+        );
+    }
 }

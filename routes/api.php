@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/create', [FormController::class, 'create']);
+    Route::put('/update/{id}', [FormController::class, 'update']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 

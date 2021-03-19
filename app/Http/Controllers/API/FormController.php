@@ -45,4 +45,16 @@ class FormController extends Controller
             200
         );
     }
+
+    public function delete($id)
+    {
+        $student = Student::find($id)->delete();
+
+        return response()->json(
+            [
+                "massage" => "data berhasil di hapus"
+            ],
+            200
+        );
+    }
 }

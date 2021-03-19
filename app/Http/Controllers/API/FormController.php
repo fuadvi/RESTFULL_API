@@ -22,6 +22,7 @@ class FormController extends Controller
         $student->nama = $request->nama;
         $student->alamat = $request->alamat;
         $student->no_telp = $request->no_telp;
+
         // menambahkan data ke database
         $student->save();
 

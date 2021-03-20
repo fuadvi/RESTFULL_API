@@ -37,4 +37,50 @@ class ScoreController extends Controller
             200
         );
     }
+
+
+    public function getStudent($id)
+    {
+        $student = Student::with('score')->where('id', $id)->first();
+        // dd($student);
+
+        return response()->json(
+            [
+                'massage' => "success",
+                'data_student' => $student
+            ],
+            200
+        );
+    }
+
+    public function update(Request $request, $id)
+    {
+        $student = Student::find($id);
+
+        $student->update([
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'no_telp' => $request->no_telp
+        ]);
+
+        $score = score::where("student_id", $id)->delete();
+
+        // create score with relasi student
+        foreach ($request->list_pelajaran as $key => $value) {
+            $score = array(
+                'student_id' => $student->id,
+                'mata_pelajran' => $value["mata_pelajran"],
+                'nilai' => $value['nilai']
+            );
+
+            $scores = score::create($score);
+        }
+
+        return response()->json(
+            [
+                'massage' => "success",
+            ],
+            200
+        );
+    }
 }

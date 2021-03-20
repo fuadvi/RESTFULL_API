@@ -32,6 +32,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // crud score with relastion Student
     Route::post('/score', [ScoreController::class, 'create']);
+    Route::get('/data-student/{id}', [ScoreController::class, 'getStudent']);
+    Route::post('/data-student/{id}', [ScoreController::class, 'update']);
 
 
     Route::post('/logout', [AuthController::class, 'logout']);
